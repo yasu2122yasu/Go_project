@@ -1,0 +1,22 @@
+settings:
+  legacy:
+    force: false
+    interval: 0s
+schema:
+- name: app
+  path: .
+  commands: {}
+#   ここから
+  commands:
+    run:
+      status: true
+#   ここまでを追加する
+  watcher:
+    extensions:
+    - go
+    paths:
+    - /
+    ignored_paths:
+    - .git
+    - .realize
+    - vendor
