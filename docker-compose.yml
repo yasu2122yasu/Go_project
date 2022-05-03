@@ -4,6 +4,6 @@ services:
         build: . # ビルドに使うDockerfileの場所
         tty: true # コンテナの永続化
         ports: # ホストOSのポートとコンテナのポートをつなげる
-            - "8080:8080"
+            - "8081:8081"
         volumes:
             - ./app:/go/src/app # マウントディレクトリ
