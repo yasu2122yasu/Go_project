@@ -1,13 +1,25 @@
-# 2020/10/14最新versionを取得
-FROM golang:1.15.2-alpine
-# アップデートとgitのインストール！！
-RUN apk update && apk add git
-# appディレクトリの作成
-RUN mkdir /go/src/app
-# ワーキングディレクトリの設定
-WORKDIR /go/src/app
-# ホストのファイルをコンテナの作業ディレクトリに移行
-ADD . /go/src/app
+FROM golang:1.17-alpine
 
-RUN go get -u github.com/oxequa/realize 
-CMD ["realize", "start"]
+# appディレクトリの作成
+RUN mkdir /go/src/go-iris-sample
+
+# copy source
+COPY .. /go/src/go-iris-sample/
+COPY .. /usr/local/go/src/
+
+# ワーキングディレクトリの設定
+WORKDIR /go/src/go-iris-sample
+
+# Environment
+ENV LANG C.UTF-8
+ENV TZ Asia/Tokyo
+
+# package update
+RUN apk update && apk add git
+
+# go.mod パッケージのインストール
+RUN go get github.com/cosmtrek/air@v1.29.0
+RUN go mod download
+
+# ホットリロードの感知
+CMD ["air", "-c", ".air.toml"]
