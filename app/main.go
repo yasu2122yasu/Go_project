@@ -25,5 +25,5 @@ func main() {
 	users := app.Party("/users")
 	mvc.Configure(users, setups.ConfigureUsersControllers)
 
-	app.Listen(":8080")
+	app.Listen(":8081")
 }

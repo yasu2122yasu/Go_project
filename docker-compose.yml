@@ -1,9 +1,35 @@
-version: "3" # composeファイルのバージョン
+version: "3.3"
+
 services:
-    app: # サービス名
-        build: . # ビルドに使うDockerfileの場所
-        tty: true # コンテナの永続化
-        ports: # ホストOSのポートとコンテナのポートをつなげる
-            - "8081:8081"
-        volumes:
-            - ./app:/go/src/app # マウントディレクトリ
+  go-iris-sample:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/go/src/go-iris-sample
+    ports:
+      - 8081:8081
+    depends_on:
+      - "db"
+    environment:
+      DB_CONNECTION: ${DB_CONNECTION}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+
+  db:
+    image: mysql:8.0.26
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/mysql_init:/docker-entrypoint-initdb.d
+      - ./db/mysql_data:/var/lib/mysql
+    cap_add:
+      - SYS_NICE
