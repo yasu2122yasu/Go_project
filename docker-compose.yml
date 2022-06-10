@@ -1,14 +1,14 @@
 version: "3.3"
 
 services:
-  go-iris-sample:
+  Go_project:
     build:
       context: .
-      dockerfile: docker/Dockerfile
+      dockerfile: Dockerfile
     stdin_open: true
     tty: true
     volumes:
-      - .:/go/src/go-iris-sample
+      - .:/go/src/Go_project
     ports:
       - 8081:8081
     depends_on:

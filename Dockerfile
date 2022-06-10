@@ -1,14 +1,14 @@
 FROM golang:1.17-alpine
 
 # appディレクトリの作成
-RUN mkdir /go/src/go-iris-sample
+RUN mkdir /go/src/Go_project
 
 # copy source
-COPY .. /go/src/go-iris-sample/
+COPY .. /go/src/Go_project/
 COPY .. /usr/local/go/src/
 
 # ワーキングディレクトリの設定
-WORKDIR /go/src/go-iris-sample
+WORKDIR /go/src/Go_project
 
 # Environment
 ENV LANG C.UTF-8
