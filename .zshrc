@@ -14,7 +14,7 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-export PATH=$PATH:/usr/local/go/bin ~/Users/yasushitamura/.zshrc
+export PATH=$PATH:/usr/local/go/bin 
 
 
 # >>> conda initialize >>>
