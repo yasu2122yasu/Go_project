@@ -1,0 +1,6 @@
+
+development:
+    driver: mymysql
+    open: tcp:localhost:3306*GoBlog/workuser/Asdfghjkl@123
+
+
