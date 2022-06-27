@@ -39,3 +39,4 @@ export PATH=$PATH:/sbin
 eval "$(direnv hook zsh)"
 export PATH=$HOME/go/bin:$PATH
 eval "$(direnv hook zsh)"
+export PATH=$PATH:$(go env GOPATH)/bin
