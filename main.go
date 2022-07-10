@@ -43,15 +43,4 @@ func createMux() *echo.Echo {
 	return e
 }
 
-func connectDB() *sqlx.DB {
-	dsn := os.Getenv("DSN")
-	db, err := sqlx.Open("mysql", dsn)
-	if err != nil {
-		e.Logger.Fatal(err)
-	}
-	if err := db.Ping(); err != nil {
-		e.Logger.Fatal(err)
-	}
-	log.Println("db connection succeeded")
-	return db
-}
+
